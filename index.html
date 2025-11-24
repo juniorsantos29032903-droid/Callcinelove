@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CineSync Pro - Ultimate Max V5 (Fix Tela + Imersivo)</title>
+    <title>CineSync Pro - Ultimate (Metered Connection)</title>
     <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -97,185 +97,6 @@
                 height: auto !important;
                 transform: translateY(0);
                 border-top: 1px solid #333;
-                box-shadow: none;
-            }
-            body.chat-active video.webcam { object-fit: contain !important; background: #000; }
-        }
-
-        body.chat-active .custom-controls { display: none !important; }
-        body.chat-active .url-overlay { display: none !important; pointer-events: none; }
-        body.chat-active header { display: none !important; pointer-events: none; }
-
-
-        /* --- 4. ELEMENTOS GERAIS --- */
-        .overlay-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: var(--bg); z-index: 20000; display: flex; justify-content: center; align-items: center; }
-        .login-box { background: #151515; padding: 40px; border-radius: 20px; text-align: center; border: var(--border); box-shadow: 0 10px 40px rgba(0,0,0,0.8); max-width: 90%; width: 350px; }
-        .login-logo { font-size: 2rem; font-weight: 900; letter-spacing: 2px; margin-bottom: 10px; color: white; }
-
-        header { position: absolute; top: 0; left: 0; width: 100%; height: 60px; background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%); border-bottom: none; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; z-index: 200; pointer-events: none; }
-        header > div { pointer-events: auto; }
-
-        .user-profile { display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px); padding: 2px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); width: 40px; height: 40px; }
-        .user-avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-
-        .btn-icon-wrapper { position: relative; display: inline-block; }
-        .btn-icon { background: rgba(0,0,0,0.3); border: none; color: #eee; font-size: 1.2rem; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; border-radius: 50%; backdrop-filter: blur(4px); }
-        .btn-icon:hover { color: #fff; background: rgba(255,255,255,0.2); }
-        .btn-icon.blinking { animation: glow-blink 1s infinite alternate; background: rgba(229, 9, 20, 0.4); }
-        @keyframes glow-blink { from { box-shadow: 0 0 5px rgba(229,9,20,0.2); } to { box-shadow: 0 0 20px rgba(229,9,20,0.8); transform: scale(1.1); } }
-
-        .badge-counter { position: absolute; top: -5px; right: -5px; background: var(--danger); color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 0.7rem; font-weight: bold; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg); opacity: 0; transition: opacity 0.2s; pointer-events: none; }
-        .badge-counter.visible { opacity: 1; }
-
-        .url-overlay { position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 650px; height: 50px; background: var(--glass); backdrop-filter: blur(12px); border: var(--border); border-radius: 50px; display: flex; align-items: center; padding: 0 5px; z-index: 250; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: top 0.4s ease; }
-        .url-overlay.visible { top: 70px; }
-        .input-round { flex: 1; min-width: 0; background: transparent; border: none; color: white; padding-left: 15px; font-size: 1rem; height: 100%; }
-        .btn-round { width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer; color: white; display: flex; justify-content: center; align-items: center; font-size: 1rem; transition: transform 0.2s; flex-shrink: 0; margin-left: 5px; }
-        .btn-add { background: #333; }
-        .btn-search { background: var(--accent); }
-        .btn-browser-mode { background: #3498db; }
-
-        .viewer-layer { width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: none; pointer-events: none; background: #000; z-index: 10; }
-        .viewer-layer.active { display: block; pointer-events: auto; z-index: 20; }
-        iframe { width: 100%; height: 100%; border: none; background: #000; }
-        #native-video { width: 100%; height: 100%; object-fit: contain; background: #000; }
-        #placeholder-screen { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; color: #444; padding-top: 50px; background: #000; z-index: 5; }
-        #placeholder-screen.active { display: flex; z-index: 5; }
-        #placeholder-screen i { font-size: 4rem; margin-bottom: 10px; }
-
-        .custom-controls { position: absolute; bottom: 0; left: 0; width: 100%; display: flex; flex-direction: column; align-items: center; background: #000; padding: 0; z-index: 80; border-top: 1px solid #222; }
-        #progressBar { width: 100%; -webkit-appearance: none; height: 8px; background: #000; outline: none; cursor: pointer; margin: 0; display: block; }
-        #progressBar::-webkit-slider-runnable-track { background: #000; }
-        #progressBar::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); cursor: pointer; transition: transform 0.2s; margin-top: -2px; }
-        #progressBar::-webkit-slider-thumb:hover { transform: scale(1.5); }
-        .controls-wrapper { padding: 5px 15px 10px; width: 100%; display: flex; flex-direction: column; gap: 5px; background: #000; }
-        .time-row { display: flex; justify-content: space-between; align-items: center; width: 100%; font-size: 0.75rem; color: #bbb; font-family: monospace; }
-        .manual-time-input { background: rgba(255,255,255,0.1); border: 1px solid #333; color: white; width: 80px; padding: 2px 5px; font-family: monospace; text-align: center; border-radius: 3px; }
-        .controls-row { display: flex; align-items: center; justify-content: center; gap: 20px; }
-        .btn-ctrl { background: none; border: none; color: #ccc; font-size: 1.2rem; cursor: pointer; transition: 0.2s; }
-        .btn-ctrl:hover { color: #fff; transform: scale(1.1); }
-        .btn-ctrl.main { font-size: 1.8rem; color: #fff; }
-        .btn-ctrl.main:hover { color: var(--accent); }
-
-        .cams-dock { flex: 1; display: flex; padding: 2px; gap: 2px; background: #000; overflow: hidden; position: relative; justify-content: center; }
-        .cam-box { flex: 1; background: #111; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .waiting-friend { display: flex; flex-direction: column; align-items: center; gap: 10px; color: #555; position: absolute; width: 100%; height: 100%; justify-content: center; background: #0a0a0a; z-index: 1; }
-        .spinner { width: 30px; height: 30px; border: 3px solid rgba(255,255,255,0.1); border-top: 3px solid var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .be-right-back { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; flex-direction: column; justify-content: center; align-items: center; color: #bbb; z-index: 5; }
-        
-        .mute-overlay-text { 
-            position: absolute; bottom: 15px; right: 15px; 
-            background: rgba(0,0,0,0.6); 
-            color: var(--danger); 
-            padding: 12px; 
-            border-radius: 50%; 
-            font-size: 1.5rem; 
-            font-weight: bold; 
-            pointer-events: none; display: none; z-index: 100; 
-            backdrop-filter: blur(2px); 
-            border: 1px solid rgba(255,255,255,0.1); 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
-            animation: pulse-mute-icon 2s infinite;
-        }
-
-        @keyframes pulse-mute-icon {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
-        }
-
-        video.webcam { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); position: relative; z-index: 2; transition: transform 0.2s ease-out; }
-        video.webcam.hidden { opacity: 0; }
-        .no-mirror { transform: scaleX(1) !important; }
-        .screen-share-active { transform: scaleX(1) !important; object-fit: contain !important; background: #111; }
-
-        .label { position: absolute; bottom: 5px; left: 5px; background: rgba(0,0,0,0.6); padding: 2px 6px; border-radius: 4px; font-size: 0.6rem; color: #fff; z-index: 5; }
-        .cam-overlay-controls { position: absolute; top: 5px; right: 5px; z-index: 10; display: flex; gap: 5px; align-items: center; background: rgba(0,0,0,0.3); padding: 4px; border-radius: 20px; backdrop-filter: blur(2px); }
-        .btn-cam-ctrl { width: 26px; height: 26px; border-radius: 50%; border: none; background: rgba(0,0,0,0.6); color: white; cursor: pointer; font-size: 0.8rem; transition: background 0.3s; display: flex; align-items: center; justify-content: center; }
-        .btn-cam-ctrl.off { background: var(--danger); }
-        .zoom-slider-container { width: 0; overflow: hidden; transition: width 0.3s ease; display: flex; align-items: center; }
-        .cam-overlay-controls:hover .zoom-slider-container, .zoom-slider-container:focus-within { width: 60px; margin-right: 5px; }
-        input[type=range].zoom-range { -webkit-appearance: none; width: 100%; background: transparent; }
-        input[type=range].zoom-range::-webkit-slider-thumb { -webkit-appearance: none; height: 12px; width: 12px; border-radius: 50%; background: var(--accent); cursor: pointer; margin-top: -4px; }
-        input[type=range].zoom-range::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: rgba(255,255,255,0.3); border-radius: 2px; }
-        .zoom-indicator { font-size: 0.6rem; font-weight: 900; color: #888; margin-right: 5px; letter-spacing: 1px; }
-        
-        .media-off-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            color: #ddd; z-index: 3;
-            font-size: 0.9rem;
-            text-align: center;
-            padding: 15px;
-        }
-
-        /* --- 9. CHAT --- */
-        #chatPanel {
-            position: fixed; bottom: 0; left: 0; width: 100%; height: 65dvh; 
-            background: var(--chat-glass); 
-            z-index: 6000; transform: translateY(110%); transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-            display: flex; flex-direction: column; border-top: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 -10px 50px rgba(0,0,0,0.5);
-        }
-        
-        #chatPanel.open { transform: translateY(0); }
-
-        .chat-header { height: 40px; background: transparent; display: flex; justify-content: flex-end; align-items: center; padding: 0 10px; border-bottom: 1px solid #111; flex-shrink: 0; }
-        
-        .chat-history { 
-            flex: 1; 
-            overflow-y: auto; 
-            padding: 15px; 
-            display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth; 
-            background: #000; 
-            min-height: 0;
-        }
-        
-        .chat-controls-area { 
-            padding: 10px; 
-            background: #050505; 
-            border-top: var(--border); 
-            flex-shrink: 0;
-            padding-bottom: max(10px, env(safe-area-inset-bottom)); 
-        }
-        
-        .sfx-bar { display: flex; gap: 10px; overflow-x: auto; padding: 5px 0 12px 0; margin-bottom: 5px; white-space: nowrap; scrollbar-width: thin; scrollbar-color: #333 #111; }
-        .sfx-bar::-webkit-scrollbar { height: 4px; }
-        .sfx-bar::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        
-        .sfx-btn { background: #181818; border: 1px solid #333; color: #aaa; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 1.1rem; transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; justify-content: center; flex-shrink: 0; min-width: 50px; }
-        .sfx-btn:active { transform: scale(0.9); }
-        .sfx-btn:hover { background: var(--accent); color: white; border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(229, 9, 20, 0.3); }
-        .sfx-btn.playing { border-color: var(--danger); color: var(--danger); background: rgba(192, 57, 43, 0.2); animation: pulse-red 1s infinite; box-shadow: 0 0 10px rgba(192, 57, 43, 0.5); }
-
-        @keyframes pulse-red { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-        
-        .msg { padding: 8px 14px; border-radius: 12px; max-width: 85%; font-size: 0.95rem; word-wrap: break-word; line-height: 1.4; display: inline-block; text-shadow: 0 1px 2px black; position: relative; }
-        .msg.me { background: rgba(229, 9, 20, 0.8); align-self: flex-end; color: white; border-bottom-right-radius: 2px; }
-        .msg.them { background: rgba(34, 34, 34, 0.9); align-self: flex-start; color: #fff; border: 1px solid rgba(255,255,255,0.1); border-bottom-left-radius: 2px; }
-        .msn-sticker { width: 60px; height: 60px; vertical-align: middle; display: inline-block; margin: 2px; object-fit:contain; transition: transform 0.2s; }
-        .msn-sticker:hover { transform: scale(1.2); }
-        .msg.anim-emoji { background: transparent !important; border: none; padding: 0; box-shadow: none; }
-        .msg.anim-emoji .msn-sticker { width: 100px; height: 100px; } 
-        
-        .chat-input-row { display: flex; gap: 10px; align-items: center; background: #111; padding: 8px; border-radius: 30px; border: var(--border); }
-        .input-full { flex: 1; background: transparent; border: none; color: white; font-size: 1rem; margin-left: 10px; min-width: 0; }
-        .btn-send { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-
-        .side-panel { position: fixed; top: 0; bottom: 0; width: 320px; background: #0f0f0f; z-index: 7000; transition: transform 0.3s ease; display: flex; flex-direction: column; box-shadow: 0 0 50px rgba(0,0,0,0.8); border: var(--border); }
-        #playlistPanel { left: 0; transform: translateX(-100%); border-right: var(--border); }
-        #playlistPanel.open { transform: translateX(0); }
-        #settingsPanel { right: 0; transform: translateX(100%); border-left: var(--border); }
-        #settingsPanel.open { transform: translateX(0); }
-        .header-panel { height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; font-weight: 700; border-bottom: var(--border); background: #151515; }
-        .btn-close-fixed { width: 32px; height: 32px; border-radius: 50%; border: none; background: rgba(255,255,255,0.1); color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        
-        /* NOVO ESTILO PLAYLIST */
-        .playlist-item { background: #1a1a1a; padding: 8px; border-radius: 8px; margin-bottom: 8px; display: grid; grid-template-columns: 50px 1fr 30px; gap: 10px; align-items: center; cursor: pointer; overflow: hidden; border: 1px solid #222; transition: all 0.2s; }
-        .playlist-item:hover { background: #222; }
-        .playlist-item.active { border: 1px                 border-top: 1px solid #333;
                 box-shadow: none;
             }
             body.chat-active video.webcam { object-fit: contain !important; background: #000; }
@@ -575,8 +396,9 @@
         <div class="login-box">
             <div class="login-logo">CINE<span style="color:var(--accent)">SYNC</span></div>
             <p style="color:#888; margin-bottom:20px;">Login Profissional</p>
-            <div id="g_id_onload" data-callback="handleCredentialResponse" data-auto_prompt="false" data-theme="filled_black"></div>
+            <div id="g_id_onload" data-client_id="637437813670-k33ako3erkc9fj7c1p6i2jo98bqdbt1j.apps.googleusercontent.com" data-callback="handleCredentialResponse" data-auto_prompt="false" data-theme="filled_black"></div>
             <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="filled_black" data-size="large"></div>
+            <p style="font-size:0.7rem; color:#555; margin-top:20px;">*Se o login não salvar, use Live Server.</p>
         </div>
     </div>
 
@@ -837,7 +659,7 @@
             <label style="color:#666; font-size:0.8rem; font-weight:bold;">AMIGOS SALVOS</label>
             <div id="friendsList" style="margin-top:10px;"></div>
             
-            <button onclick="logout()" style="width:100%; padding:10px; background:var(--danger); border:none; border-radius:4px; font-weight:bold; cursor:pointer; margin-top:30px; color:white;">SAIR</button>
+            <button onclick="logout()" style="width:100%; padding:10px; background:var(--danger); border:none; border-radius:4px; font-weight:bold; cursor:pointer; margin-top:30px; color:white;">SAIR (Logout)</button>
         </div>
     </aside>
 
@@ -846,8 +668,38 @@
     <script>
         // --- CONFIGURAÇÃO CHAVE API TMDB ---
         const TMDB_API_KEY = "3fd2be6f0c70a2a598f084ddfb75487c"; 
-        const GOOGLE_CLIENT_ID = "1035155583014-qg8mtgu48g4j5bac79nknn41nb449sff.apps.googleusercontent.com";
-        document.getElementById('g_id_onload').setAttribute('data-client_id', GOOGLE_CLIENT_ID);
+        const GOOGLE_CLIENT_ID = "637437813670-k33ako3erkc9fj7c1p6i2jo98bqdbt1j.apps.googleusercontent.com";
+        
+        // --- CONFIGURAÇÃO DE SERVIDORES ICE (METERED) ---
+        const peerConfig = {
+            config: {
+                iceServers: [
+                    {
+                        urls: "stun:stun.relay.metered.ca:80",
+                    },
+                    {
+                        urls: "turn:standard.relay.metered.ca:80",
+                        username: "cfec2fd6b0fe86e6083ff412",
+                        credential: "Ait1kNY7eGBeTkjj",
+                    },
+                    {
+                        urls: "turn:standard.relay.metered.ca:80?transport=tcp",
+                        username: "cfec2fd6b0fe86e6083ff412",
+                        credential: "Ait1kNY7eGBeTkjj",
+                    },
+                    {
+                        urls: "turn:standard.relay.metered.ca:443",
+                        username: "cfec2fd6b0fe86e6083ff412",
+                        credential: "Ait1kNY7eGBeTkjj",
+                    },
+                    {
+                        urls: "turns:standard.relay.metered.ca:443?transport=tcp",
+                        username: "cfec2fd6b0fe86e6083ff412",
+                        credential: "Ait1kNY7eGBeTkjj",
+                    },
+                ]
+            }
+        };
 
         let peer, conn, myStream;
         let screenStream = null; 
@@ -937,11 +789,41 @@
         const notifSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
         const nativeVideo = document.getElementById('native-video');
 
+        // --- SISTEMA DE LOGIN GOOGLE PERSISTENTE ---
+        
+        window.handleCredentialResponse = function(response) {
+            try {
+                const payload = JSON.parse(atob(response.credential.split('.')[1]));
+                // GERAÇÃO DE ID BASEADA EM HASH DO EMAIL (SISTEMA PERSISTENTE)
+                const staticId = "CINE-" + Math.abs(payload.email.split('').reduce((a,b)=>{a=((a<<5)-a)+b.charCodeAt(0);return a&a},0)).toString(36).substring(0,4).toUpperCase().padEnd(4,'X');
+                
+                myProfile = { name: payload.given_name, pic: payload.picture, email: payload.email, id: staticId };
+                
+                // Tenta salvar no LocalStorage
+                try {
+                    localStorage.setItem('cine_session_v4', JSON.stringify(myProfile));
+                } catch (storageError) {
+                    alert("Atenção: Seu navegador bloqueou o salvamento do login.\nSe estiver usando arquivo local (file://), use um Servidor Local.");
+                }
+                
+                showGateScreen();
+            } catch (e) { console.error(e); alert("Erro ao processar login Google."); }
+        };
+
         window.onload = () => {
+            // VERIFICAÇÃO DE SESSÃO SALVA AO INICIAR
             const saved = localStorage.getItem('cine_session_v4');
-            if (saved) { myProfile = JSON.parse(saved); showGateScreen(); }
-            renderFriends();
+            if (saved) {
+                try {
+                    myProfile = JSON.parse(saved);
+                    showGateScreen();
+                } catch(e) { 
+                    localStorage.removeItem('cine_session_v4'); 
+                }
+            }
             
+            // Renderização e Inicialização Padrão
+            renderFriends();
             const urlParams = new URLSearchParams(window.location.search);
             if(urlParams.get('conectar')) {
                 urlTargetId = urlParams.get('conectar');
@@ -960,21 +842,6 @@
                 }
             }, 5000);
         };
-
-        function handleCredentialResponse(response) {
-            try {
-                const payload = JSON.parse(atob(response.credential.split('.')[1]));
-                const staticId = generateStaticId(payload.email);
-                myProfile = { name: payload.given_name || payload.name, pic: payload.picture, email: payload.email, id: staticId };
-                localStorage.setItem('cine_session_v4', JSON.stringify(myProfile));
-                showGateScreen();
-            } catch (e) { alert("Erro Login"); }
-        }
-
-        function generateStaticId(email) {
-            let hash = 0; for (let i = 0; i < email.length; i++) { hash = ((hash << 5) - hash) + email.charCodeAt(i); hash |= 0; }
-            return "CINE-" + Math.abs(hash).toString(36).substring(0, 4).toUpperCase().padEnd(4, 'X');
-        }
 
         function showGateScreen() {
             document.getElementById('login-screen').style.display = 'none';
@@ -1037,17 +904,14 @@
             } catch(e) { showToast("⚠️ Erro Câmera"); return false; }
         }
         
-        // --- SCREEN SHARING FEATURE (CORRIGIDA) ---
         async function toggleScreenShare() {
             if (isScreenSharing) {
-                // Parar compartilhamento e voltar pra câmera
                 await startMedia();
                 isScreenSharing = false;
                 document.getElementById('btnScreenShare').classList.remove('active');
                 document.getElementById('localLabel').innerText = "Você";
                 document.getElementById('localVideo').classList.remove('screen-share-active');
                 
-                // Avisar peer
                 if(currentCall) {
                     const videoTrack = myStream.getVideoTracks()[0];
                     const sender = currentCall.peerConnection.getSenders().find(s => s.track.kind === 'video');
@@ -1056,13 +920,11 @@
                 sendData({ type: 'screen_share_status', active: false });
 
             } else {
-                // VERIFICAÇÃO DE SUPORTE
                 if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
                     return showToast("❌ Seu navegador/dispositivo não suporta compartilhar tela.");
                 }
 
                 try {
-                    // Tenta capturar a tela
                     screenStream = await navigator.mediaDevices.getDisplayMedia({ 
                         video: { cursor: "always" }, 
                         audio: true 
@@ -1077,14 +939,12 @@
                     localVid.srcObject = screenStream;
                     localVid.classList.add('screen-share-active'); 
                     
-                    // Substituir trilha no WebRTC
                     const screenTrack = screenStream.getVideoTracks()[0];
                     if(currentCall && currentCall.peerConnection) {
                         const sender = currentCall.peerConnection.getSenders().find(s => s.track.kind === 'video');
                         if(sender) sender.replaceTrack(screenTrack);
                     }
                     
-                    // Quando o usuário clicar em "Parar partilha" na barra do navegador
                     screenTrack.onended = () => {
                         if(isScreenSharing) toggleScreenShare();
                     };
@@ -1093,7 +953,6 @@
 
                 } catch (e) {
                     console.error("Erro Tela:", e);
-                    // Tratamento de erro detalhado
                     if (e.name === 'NotAllowedError') {
                         showToast("🚫 Permissão negada ou cancelada pelo usuário.");
                     } else if (e.name === 'NotFoundError') {
@@ -1158,6 +1017,8 @@
 
         function startPeer() {
             if(peer) peer.destroy();
+            
+            // --- ATUALIZADO: Usando peerConfig com Metered.ca ---
             peer = new Peer(myProfile.id, peerConfig);
             
             peer.on('open', (id) => {
@@ -1172,7 +1033,6 @@
             });
 
             peer.on('call', (call) => {
-                // Se eu estou compartilhando tela, atendo com a tela
                 let streamToSend = isScreenSharing ? screenStream : myStream;
                 currentCall = call; call.answer(streamToSend);
                 call.on('stream', (rs) => { setRemoteStream(rs); });
@@ -1255,7 +1115,6 @@
                 showToast("✅ Dados Conectados"); 
                 conn.send({ type: 'handshake', profile: myProfile });
                 
-                // Enviar playlist atual ao conectar
                 if(playlist.length > 0) {
                      conn.send({ type: 'playlist_sync', playlist: playlist });
                 }
@@ -1339,7 +1198,6 @@
                 case 'native_sync': applyNativeSync(data); break;
                 case 'navigate': loadVideo(data.url); break;
                 
-                // --- SYNC PLAYLIST ---
                 case 'playlist_sync':
                     playlist = data.playlist;
                     renderPlaylist();
